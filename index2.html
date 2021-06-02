@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+    <style>
+        input{
+            color: red;
+            font-size: 60px;
+            width: 200px;
+            text-align: center;
+            position: relative;
+            left: 50%;
+            transform: translateX(-50%);
+            top: 100px;
+        }
+    </style>
+<body>
+    
+    <input type="text" name="" id="intex">
+
+    <script>
+
+
+        function bar(){
+            let d = Math.floor(Math.random() * 10);            
+            while( d == 0 ){
+                let cd = d + 1;                
+                return cd;
+                break;
+            }         
+            return d;            
+        }        
+        
+        var h1 = [];
+
+        for(let i=0; i<3; i++){
+           let t1 = bar();        
+           h1.push(t1);
+        }       
+
+        for(let i=0; i < h1.length; i++){
+            intex.value += h1[i]
+        }
+
+
+        
+       
+
+
+    </script>
+</body>
+</html>

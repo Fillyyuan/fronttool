@@ -5,8 +5,158 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="./css/index.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/2.1.3/TweenMax.min.js"></script>
 </head>
 <body>
-    修改123
+    <section class="s1">
+        <div class="box mv1">001</div>
+        <div class="box mv2">002</div>
+        <div class="box mv3">003</div>
+        <div class="box mv4">004</div>
+        <div class="box mv5">005</div>
+        <div class="box mv6">006</div>
+        <div class="text text1">GSAP2</div>
+    </section>
+
+    <section>
+        <div class="box wide mv7">007</div>
+        <div class="box mv8">008</div>
+
+        <!-- stagger to -->
+        <div class="box mv9">009</div>
+        <div class="box mv9">009</div>
+        <div class="box mv9">009</div>
+
+        <!-- time linemax -->
+        <div class="box mv10">010</div>
+        <div class="box mv11">011</div>
+
+        <div class="box mv12">012</div>
+    </section>
+
+    <script>
+        // TweenMax.to('.mv1', 1, {x:200, y:300}); // class, 秒數, 位移範圍
+       
+        // TweenMax.to('.mv2', 1, {
+        //     x:300, 
+        //     y:100,
+        //     delay: 1
+        // });
+       
+        // TweenMax.from('.text1', 1, {            
+        //     y:100,
+        //     delay: 1.5,
+        //     opacity: 0
+        // });
+
+        // TweenMax.fromTo('selector', 秒數, {起始},{結束});
+        // TweenMax.fromTo('.mv3', 1, {
+        //     x:100,
+        // },{
+        //     x:400, 
+        //     delay: 1
+        // });
+        
+        // TweenMax.to('.mv4', 1, {
+        //     x:100, 
+        //     scale: 2, //放大
+        //     rotation: 180, //旋轉 (可單獨選X/Y軸)
+        //     repeat: 2 //重複2表原先加2 總計會有3次效果
+        // });
+
+        // TweenMax.to('.mv5', 1, {
+        //     // scale: .9,
+        //     rotation: 360, 
+        //     repeat: -1, //重複播放，永不停止
+        //     ease: Power0.easeNone //捕間動畫歸零            
+        // });
+
+        // TweenMax.to('.mv6', 5, {
+        //     x:600,
+        //     scale:2,
+        //     backgroundColor: '#f20',
+        //     // ease: Power3.easeOut   
+        //     // ease: Back.easeOut
+        //     ease: Elastic.easeOut       
+        // });
+
+        // TweenMax.to('.mv7', 1, {
+        //     rotation: 360,
+        //     transformOrigin: 'right bottom' //預設center
+        // })
+
+        // TweenMax.fromTo('.mv8', 1, {
+        //     boxShadow: '4px 4px 20px #f20' //陰影
+        // },{
+        //     width:250,
+        //     height:300,
+        //     ease: Elastic.easeOut,
+        //     repeat: -1,
+        //     boxShadow: '4px 4px 20px #fff'
+        // })
+
+
+        // TweenMax.staggerTo('.mv9', 1, {
+        //     x: 300,
+        // }, 1) //每一區塊間隔時間
+
+
+        //時間軸動畫
+        var t1 = new TimelineMax({
+            repeat: 1,   //時間相關屬性
+            yoyo: true,  //要搭配repeat 出發 倒帶 原位
+            onComplete : alerts
+        });
+
+        function alerts(){
+            alert("動畫結束")
+        };
+
+        t1.to('.mv10', 1, {
+            x: 100,
+            scale: 2
+        })
+        t1.to('.mv10', 1, {
+            y: 100,
+        })
+        t1.to('.mv10', 1, {
+            x: 400,
+        })
+        t1.to('.mv11', 1, {
+            x: 100,
+            rotation: 180,
+        })
+
+        /* 可以將t1拿掉，簡潔寫法
+        t1.to('.mv10', 1, {
+            x: 400,
+        }).to('.mv11', 1, {
+            x: 100,
+            rotation: 180,
+        })
+        */
+
+
+        var t12 = new TimelineMax()
+
+        // TweenMax.set('.mv12', {
+        //     x:200,
+        // })
+
+        t12.set('.mv12', {
+            x:400,
+            backgroundColor: '#eee'
+        }).to('.mv12', 1, {
+            x:500,
+            backgroundColor: '#f20',
+            borderRadius: "50%"
+        }).to('.mv12', 1, {
+            x:300,
+            width:300,
+            ease: Elastic.easeOut
+        })
+
+    </script>
 </body>
 </html>
