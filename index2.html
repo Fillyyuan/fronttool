@@ -5,53 +5,286 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/2.1.3/TweenMax.min.js"></script>
 </head>
 
     <style>
+        *{
+            box-sizing: border-box;
+        }
+
+        .con{
+            /* border: 8px solid blue; */
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            row-gap: 50px;
+            padding: 20px;
+            overflow: hidden;
+            position: relative;
+            background-image: url("./img/b11.png");
+            background-position: center;
+            background-size: cover;
+            background-repeat: no-repeat;
+            
+        }
+
         input{
             color: red;
-            font-size: 60px;
-            width: 200px;
+            font-size: 150px;
+            max-width: 100%;
             text-align: center;
-            position: relative;
-            left: 50%;
-            transform: translateX(-50%);
-            top: 100px;
+            
         }
+        #btn_start{
+            height: 100px;
+            width: 300px;                      
+            border-radius: 15%;   
+            font-size: 60px; 
+            font-weight: bold;
+            color: white;            
+            background-image: url("./img/press.png");
+            background-position: center;
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-color: lightblue;
+        }
+
+        #btn_sec{
+            /* height: 80px; */
+            /* width: 200px; */
+            padding: 15px 30px;
+            border-radius: 40%;
+            display: none;
+            font-size: 30px; 
+            font-weight: bold;
+            background-image: url("./img/key.png");
+            background-position: center;
+            background-size: contain;
+            background-repeat: no-repeat;
+            border: 0;
+        }
+        
+        .btn_con{
+            display: flex;
+            flex-direction: column;
+            row-gap: 50px;
+            align-items: center;
+        }
+
+        #surprise{
+            display: none;
+        }
+
+        .-on{
+            display: block !important;
+        } 
+
+        .-off{
+            display: none !important;
+        } 
+
+        #btn_lose{
+            position: absolute;
+            left: 10px;
+            top: 317px;
+            border-radius: 50%;
+            padding: 10px;
+            opacity: .5;
+        }  
+
+        .p_title{
+            margin: 0;
+            padding: 0;
+            font-size: 50px;
+            font-weight: bold;
+        }     
+        
     </style>
 <body>
-    
-    <input type="text" name="" id="intex">
+    <div class="con">
+        <p class="p_title">來尋找大祕寶吧!!</p>
+        <input type="text" name="" id="intex">
+        <div class="btn_con">
+            <button type="button" id="btn_start">Start</button>
+            <button type="button" id="btn_sec" >大祕寶</button>
+        </div>
+        <div id="surprise">
+            <img src="./img/1.PNG" alt="" class="mv01">
+            <img src="./img/2.PNG" alt="" class="mv02">
+            <img src="./img/3.PNG" alt="" class="mv03">
+            <img src="./img/4.PNG" alt="" class="mv04">
+            <img src="./img/5.PNG" alt="" class="mv05">
+            <p class="mv06">Surprise 麥當勞歡樂送!!</p>
+        </div>
+        <button type="button" id="btn_lose">沒用的傢伙，</br>就按這個吧~~</button>
+    </div>
+
+
+
+    <script>     
+
+        var btn_start = document.getElementById("btn_start");
+        var btn_sec = document.getElementById("btn_sec");
+        var surprise = document.getElementById("surprise");
+        var btn_lose = document.getElementById('btn_lose');
+
+        btn_lose.addEventListener("click", function(){
+            btn_sec.classList.add("-on")
+            surprise.classList.add("-on")
+            btn_start.classList.add("-off")
+        });
+
+        btn_start.addEventListener("click", function(){
+            // btn_sec.classList.add("-on");
+            if( intex.value == ""){
+            
+                function bar(){
+                    let d = Math.floor(Math.random() * 10);            
+                    while( d == 0 ){
+                        let cd = d + 1;                
+                        return cd;
+                        break;
+                    }         
+                    return d;            
+                }        
+                
+                var h1 = [];
+
+                for(let i=0; i<3; i++){
+                    let t1 = bar();        
+                    h1.push(t1);
+                }       
+
+                for(let i=0; i < h1.length; i++){
+                    intex.value += h1[i]
+                }
+                
+                if((h1[0] == h1[1]) && (h1[1] == h1[2])){
+                    console.log(h1);
+                } 
+
+            }else{
+                intex.value = "";
+
+                function bar(){
+                    let d = Math.floor(Math.random() * 10);            
+                    while( d == 0 ){
+                        let cd = d + 1;                
+                        return cd;
+                        break;
+                    }         
+                    return d;            
+                }        
+                
+                var h1 = [];
+
+                for(let i=0; i<3; i++){
+                    let t1 = bar();        
+                    h1.push(t1);
+                }       
+
+                for(let i=0; i < h1.length; i++){
+                    intex.value += h1[i]
+                }
+
+                if((h1[0] == h1[1]) && (h1[1] == h1[2])){
+                    btn_sec.classList.add("-on")
+                    surprise.classList.add("-on")
+                    btn_start.classList.add("-off")
+                }
+                                
+            }
+                    
+        });
+    </script>
 
     <script>
 
+        var tl = new TimelineMax({
+                repeat: 4,
+                yoyo: true
+        });
 
-        function bar(){
-            let d = Math.floor(Math.random() * 10);            
-            while( d == 0 ){
-                let cd = d + 1;                
-                return cd;
-                break;
-            }         
-            return d;            
-        }        
-        
-        var h1 = [];
+        tl.fromTo('.mv01' , 1, {            
+            scale: .5,
+            opacity: 0
+        },{
+            x: 300, 
+            y: -500,
+            opacity: 1,            
+            ease: Power4.easeOut,
+            borderRadius: 20,
+            scale: 3
+        }).fromTo('.mv02', 1, {            
+            scale: .5,
+            opacity: 0
+        },{
+            x: 100,
+            y: -450,
+            rotation : 360,
+            borderRadius: 50,
+            scale: 5.5,
+            opacity: .8,
+            delay: -1            
+        }).fromTo('.mv03', 1, {            
+            scale: .5,
+            opacity: 0
+        },{
+            x: -180,
+            y: -550, 
+            opacity: 1,           
+            scale: 2,
+            ease: Power4.easeOut,
+            borderRadius: 35,
+            delay: -1            
+        }).fromTo('.mv04', 1, {            
+            scale: .5,
+            opacity: 0
+        },{
+            x: -200,
+            y: -350,
+            scale: 2.5,
+            borderRadius: 30,
+            opacity: .6, 
+            ease: Elastic.easeOut,
+            delay: -1            
+        }).fromTo('.mv05', 1, {            
+            scale: .5,
+            opacity: 0
+        },{
+            x: 220,
+            y: -400,  
+            opacity: 1,          
+            scale: 2.5,
+            borderRadius: 30,
+            ease: Elastic.easeOut,
+            delay: -1            
+        }).fromTo('.mv06', 1, {            
+            scale: .5,
+            opacity: 0
+        },{
+            x: 330,
+            y: -500,
+            opacity: 1,
+            scale: 2.5,            
+            rotation : 360,
+            // transformOrigin: 'center',
+            delay: -1            
+        })
 
-        for(let i=0; i<3; i++){
-           let t1 = bar();        
-           h1.push(t1);
-        }       
-
-        for(let i=0; i < h1.length; i++){
-            intex.value += h1[i]
-        }
 
 
-        
-       
+        tl.stop();
 
+        var btn_sec = document.getElementById("btn_sec");
 
-    </script>
+        btn_sec.addEventListener('click' , function(){
+            tl.play();
+        })
+
+    </script>    
+
 </body>
 </html>
